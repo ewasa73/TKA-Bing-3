@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATS Bahasa Inggris Kelas XI - Descriptive Text</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+        .dark .custom-scrollbar::-webkit-scrollbar-track { background: #374151; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #9ca3af; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #6b7280; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 h-full flex flex-col transition-colors duration-200">
+
+    <!-- HEADER NAVIGATION -->
+    <header class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-brand-600 text-white p-2 rounded-lg font-bold text-xl flex items-center justify-center w-10 h-10 shadow">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-slate-900 dark:text-white text-base sm:text-lg leading-tight">CBT ATS Bahasa Inggris</h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Kelas XI / Fase F — Descriptive Text</p>
+                </div>
+            </div>
+
+            <!-- Header Info / Actions -->
+            <div class="flex items-center space-x-3">
+                <!-- Theme Toggle -->
+                <button id="themeToggleBtn" onclick="toggleDarkMode()" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:inline"></i>
+                </button>
+
+                <!-- Font Resizer (Active in Exam) -->
+                <div id="fontResizer" class="hidden sm:flex items-center space-x-1 bg-slate-100 dark:bg-slate-700 rounded-lg p-1 text-xs">
+                    <button onclick="changeFontSize(-1)" class="px-2 py-1 rounded hover:bg-white dark:hover:bg-slate-600 font-bold" title="Kecilkan Teks">A-</button>
+                    <button onclick="changeFontSize(1)" class="px-2 py-1 rounded hover:bg-white dark:hover:bg-slate-600 font-bold" title="Besarkan Teks">A+</button>
+                </div>
+
+                <!-- Timer Badge (Hidden initially) -->
+                <div id="timerBadge" class="hidden flex items-center space-x-2 bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 font-mono font-bold px-3 py-1.5 rounded-lg border border-amber-300 dark:border-amber-700">
+                    <i class="fa-regular fa-clock animate-pulse"></i>
+                    <span id="timeDisplay">60:00</span>
+                </div>
+
+                <!-- Teacher Portal Button -->
+                <button onclick="openTeacherDashboard()" class="text-xs sm:text-sm font-medium bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 px-3 py-2 rounded-lg transition flex items-center space-x-1">
+                    <i class="fa-solid fa-user-shield text-brand-600 dark:text-brand-400"></i>
+                    <span class="hidden md:inline">Dashboard Guru</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col">
+
+        <!-- SCREEN 1: LOGIN / START PAGE -->
+        <section id="loginScreen" class="max-w-xl mx-auto my-auto w-full bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700">
+            <div class="text-center mb-6">
+                <span class="inline-block p-3 rounded-full bg-brand-50 dark:bg-slate-700 text-brand-600 dark:text-brand-400 mb-3 text-2xl">
+                    <i class="fa-solid fa-file-signature"></i>
+                </span>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Asesmen Tengah Semester</h2>
+                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Bahasa Inggris Kelas XI — Waktu Pengerjaan 60 Menit</p>
+            </div>
+
+            <form onsubmit="startExam(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">Nama Lengkap Siswa</label>
+                    <input type="text" id="studentName" required placeholder="Masukkan nama lengkap Anda..." class="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-brand-500 focus:outline-none text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">Pilih Kelas</label>
+                    <select id="studentClass" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-brand-500 focus:outline-none text-sm">
+                        <option value="">-- Pilih Kelas Fase F --</option>
+                        <option value="F1">F1</option>
+                        <option value="F2">F2</option>
+                        <option value="F3">F3</option>
+                        <option value="F4">F4</option>
+                        <option value="F5">F5</option>
+                        <option value="F6">F6</option>
+                        <option value="F7">F7</option>
+                    </select>
+                </div>
+
+                <div class="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl text-xs space-y-2 border border-slate-200 dark:border-slate-600">
+                    <p class="font-bold text-slate-800 dark:text-slate-200"><i class="fa-solid fa-circle-info text-brand-500 mr-1"></i> Petunjuk Pengerjaan:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-slate-600 dark:text-slate-300">
+                        <li>Jumlah Soal: <strong>30 Nomor</strong> (Multiple Choice, Complex Multiple Choice, True/False).</li>
+                        <li>Durasi: <strong>60 Menit</strong> (Hitung mundur otomatis submit).</li>
+                        <li>Gunakan panel nomor untuk berpindah soal secara acak.</li>
+                        <li>Pembahasan lengkap akan terbuka setelah tombol <strong>Submit</strong> diklik.</li>
+                    </ul>
+                </div>
+
+                <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl transition shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 text-base">
+                    <span>Mulai Pengerjaan Ujian</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+        </section>
+
+        <!-- SCREEN 2: EXAM WORKSPACE -->
+        <section id="examScreen" class="hidden flex-1 flex flex-col lg:flex-row gap-6">
+            
+            <!-- LEFT / TOP CONTENT: QUESTION & READING TEXT -->
+            <div class="flex-1 flex flex-col bg-white dark:bg-slate-800 rounded-2xl shadow-md border border-slate-200 dark:border-slate-700 overflow-hidden">
+                
+                <!-- Question Bar Header -->
+                <div class="bg-slate-100 dark:bg-slate-700/60 px-5 py-3 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                    <span id="questionNumBadge" class="bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full">Soal #1</span>
+                    <span id="questionTypeBadge" class="text-xs font-semibold bg-slate-200 dark:bg-slate-600 px-2.5 py-1 rounded-lg text-slate-700 dark:text-slate-200">
+                        Multiple Choice
+                    </span>
+                </div>
+
+                <!-- Scrollable Reading & Options Workspace -->
+                <div id="contentArea" class="flex-1 p-5 sm:p-6 overflow-y-auto custom-scrollbar space-y-6 text-sm sm:text-base">
+                    
+                    <!-- Reading Text Card -->
+                    <div class="bg-slate-50 dark:bg-slate-900/60 p-4 sm:p-5 rounded-xl border border-slate-200 dark:border-slate-700 space-y-3">
+                        <h3 id="readingTitle" class="font-bold text-base sm:text-lg text-brand-700 dark:text-brand-400"></h3>
+                        <div id="readingBody" class="leading-relaxed text-slate-700 dark:text-slate-300 space-y-3 whitespace-pre-line text-justify"></div>
+                    </div>
+
+                    <!-- Question Prompt -->
+                    <div class="font-semibold text-slate-900 dark:text-white text-base leading-snug">
+                        <span class="text-brand-600 font-bold mr-1">Question:</span>
+                        <span id="questionPrompt"></span>
+                    </div>
+
+                    <!-- Answer Form Options Area -->
+                    <div id="optionsContainer" class="space-y-3 pt-2">
+                        <!-- Dynamic Options loaded via JS -->
+                    </div>
+                </div>
+
+                <!-- Footer Exam Action Buttons -->
+                <div class="bg-slate-50 dark:bg-slate-700/40 px-5 py-3 border-t border-slate-200 dark:border-slate-700 flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex items-center space-x-2">
+                        <label class="cursor-pointer inline-flex items-center bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-400 px-3 py-2 rounded-lg border border-amber-300 dark:border-amber-700 text-xs sm:text-sm font-medium hover:bg-amber-100 transition">
+                            <input type="checkbox" id="flagCheckbox" onchange="toggleFlagCurrentQuestion()" class="rounded border-amber-400 text-amber-600 focus:ring-amber-500 mr-2 h-4 w-4">
+                            <span><i class="fa-solid fa-bookmark mr-1"></i> Ragu-ragu</span>
+                        </label>
+                    </div>
+
+                    <div class="flex items-center space-x-2 ml-auto">
+                        <button onclick="navigateQuestion(-1)" id="prevBtn" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-semibold transition">
+                            <i class="fa-solid fa-chevron-left mr-1"></i> Sebelumnya
+                        </button>
+                        <button onclick="navigateQuestion(1)" id="nextBtn" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-semibold transition">
+                            Berikutnya <i class="fa-solid fa-chevron-right ml-1"></i>
+                        </button>
+                        <button onclick="confirmSubmitExam()" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-bold shadow transition flex items-center">
+                            <i class="fa-solid fa-paper-plane mr-2"></i> Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT / SIDEBAR: QUESTION NAVIGATION GRID -->
+            <div class="w-full lg:w-80 bg-white dark:bg-slate-800 rounded-2xl shadow-md border border-slate-200 dark:border-slate-700 p-5 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-200 dark:border-slate-700">
+                        <h3 class="font-bold text-slate-900 dark:text-white flex items-center text-sm sm:text-base">
+                            <i class="fa-solid fa-border-all mr-2 text-brand-600"></i> Navigasi Soal
+                        </h3>
+                        <span id="progressSummary" class="text-xs bg-brand-50 dark:bg-slate-700 text-brand-700 dark:text-brand-300 px-2.5 py-1 rounded-full font-bold">0 / 30</span>
+                    </div>
+
+                    <!-- Legend Status -->
+                    <div class="grid grid-cols-3 gap-2 text-[11px] mb-4 text-center font-medium">
+                        <div class="p-1.5 rounded bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700">Sudah</div>
+                        <div class="p-1.5 rounded bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-700">Ragu</div>
+                        <div class="p-1.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 border border-slate-300 dark:border-slate-600">Belum</div>
+                    </div>
+
+                    <!-- Grid Buttons 1-30 -->
+                    <div id="navigationGrid" class="grid grid-cols-5 sm:grid-cols-6 lg:grid-cols-5 gap-2 max-h-72 lg:max-h-none overflow-y-auto custom-scrollbar p-1">
+                        <!-- Javascript generates 30 grid items -->
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-slate-200 dark:border-slate-700">
+                    <button onclick="confirmSubmitExam()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl transition shadow flex items-center justify-center space-x-2 text-sm">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <span>Selesaikan Ujian</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: RESULTS & EXPLANATION REVIEW -->
+        <section id="resultScreen" class="hidden flex-1 flex flex-col space-y-6">
+            
+            <!-- Result Summary Card Header -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 sm:p-8 shadow-lg border border-slate-200 dark:border-slate-700 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="space-y-2 text-center md:text-left">
+                    <span class="bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                        Hasil Ujian Tersepan
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white" id="resStudentName">Nama Siswa</h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400" id="resStudentClass">Kelas: F1 | Selesai pada: -</p>
+                </div>
+
+                <div class="flex items-center gap-4 sm:gap-6 bg-slate-50 dark:bg-slate-700/50 p-4 rounded-xl border border-slate-200 dark:border-slate-600">
+                    <div class="text-center px-2">
+                        <p class="text-xs text-slate-500 dark:text-slate-400 uppercase font-bold">Skor Akhir</p>
+                        <p id="resScore" class="text-3xl sm:text-4xl font-extrabold text-brand-600 dark:text-brand-400">0</p>
+                    </div>
+                    <div class="h-10 w-px bg-slate-300 dark:bg-slate-600"></div>
+                    <div class="text-center px-2">
+                        <p class="text-xs text-slate-500 dark:text-slate-400 uppercase font-bold">Benar / Salah</p>
+                        <p class="text-lg sm:text-xl font-bold"><span id="resCorrect" class="text-emerald-600">0</span> / <span id="resWrong" class="text-rose-600">0</span></p>
+                    </div>
+                    <div class="h-10 w-px bg-slate-300 dark:bg-slate-600"></div>
+                    <div class="text-center px-2">
+                        <p class="text-xs text-slate-500 dark:text-slate-400 uppercase font-bold">Waktu</p>
+                        <p id="resTimeUsed" class="text-lg sm:text-xl font-bold text-slate-700 dark:text-slate-200">0m 0s</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
+                    <button onclick="window.print()" class="px-4 py-2.5 bg-slate-800 hover:bg-slate-900 text-white dark:bg-slate-700 dark:hover:bg-slate-600 font-semibold rounded-xl text-xs sm:text-sm transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-print"></i>
+                        <span>Cetak Hasil</span>
+                    </button>
+                    <button onclick="location.reload()" class="px-4 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl text-xs sm:text-sm transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span>Halaman Utama</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Explanation & Discussion Filter Toolbar -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 shadow-md border border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <h3 class="font-bold text-slate-900 dark:text-white text-base flex items-center">
+                    <i class="fa-solid fa-book-open mr-2 text-brand-600"></i> Pembahasan Lengkap Soal (1 - 30)
+                </h3>
+
+                <div class="flex items-center space-x-2 bg-slate-100 dark:bg-slate-700 p-1 rounded-lg text-xs font-semibold">
+                    <button onclick="filterExplanation('all')" id="filterAllBtn" class="px-3 py-1.5 rounded-md bg-white dark:bg-slate-600 text-slate-800 dark:text-white shadow-sm">Semua Soal</button>
+                    <button onclick="filterExplanation('correct')" id="filterCorrectBtn" class="px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-300 hover:text-slate-900">Jawaban Benar</button>
+                    <button onclick="filterExplanation('wrong')" id="filterWrongBtn" class="px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-300 hover:text-slate-900">Jawaban Salah</button>
+                </div>
+            </div>
+
+            <!-- Explanations Detailed List -->
+            <div id="explanationsList" class="space-y-6">
+                <!-- Javascript generates detailed review cards for all 30 questions -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL: TEACHER DASHBOARD -->
+    <div id="teacherModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col border border-slate-200 dark:border-slate-700 overflow-hidden">
+            
+            <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between bg-slate-50 dark:bg-slate-700/50">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-chart-column text-brand-600 text-xl"></i>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-lg">Dashboard Rekapitulasi Guru</h3>
+                </div>
+                <button onclick="closeTeacherDashboard()" class="text-slate-400 hover:text-slate-600 dark:hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="p-6 overflow-y-auto custom-scrollbar space-y-4 flex-1">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <div class="flex items-center space-x-2 w-full sm:w-auto">
+                        <select id="filterClassTeacher" onchange="renderTeacherTable()" class="px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 dark:bg-slate-700 text-xs font-semibold">
+                            <option value="ALL">Semua Kelas (F1 - F7)</option>
+                            <option value="F1">Kelas F1</option>
+                            <option value="F2">Kelas F2</option>
+                            <option value="F3">Kelas F3</option>
+                            <option value="F4">Kelas F4</option>
+                            <option value="F5">Kelas F5</option>
+                            <option value="F6">Kelas F6</option>
+                            <option value="F7">Kelas F7</option>
+                        </select>
+                        <span id="totalAttemptBadge" class="text-xs bg-slate-100 dark:bg-slate-700 px-3 py-2 rounded-lg font-bold">0 Data TerSimpan</span>
+                    </div>
+
+                    <div class="flex items-center space-x-2 w-full sm:w-auto justify-end">
+                        <button onclick="exportToCSV()" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold transition flex items-center space-x-1">
+                            <i class="fa-solid fa-file-excel mr-1"></i>
+                            <span>Ekspor Excel / CSV</span>
+                        </button>
+                        <button onclick="clearDatabase()" class="px-3.5 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-xs font-bold transition flex items-center space-x-1">
+                            <i class="fa-solid fa-trash-can mr-1"></i>
+                            <span>Reset Data</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Database Table -->
+                <div class="overflow-x-auto border border-slate-200 dark:border-slate-700 rounded-xl">
+                    <table class="w-full text-left text-xs text-slate-700 dark:text-slate-300">
+                        <thead class="bg-slate-100 dark:bg-slate-700 font-bold uppercase text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-600">
+                            <tr>
+                                <th class="p-3">#</th>
+                                <th class="p-3">Nama Siswa</th>
+                                <th class="p-3">Kelas</th>
+                                <th class="p-3">Skor</th>
+                                <th class="p-3">Benar / Salah</th>
+                                <th class="p-3">Durasi</th>
+                                <th class="p-3">Waktu Selesai</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teacherTableBody" class="divide-y divide-slate-200 dark:divide-slate-700">
+                            <!-- JS loaded rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: SUBMIT CONFIRMATION -->
+    <div id="confirmModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl max-w-md w-full p-6 text-center border border-slate-200 dark:border-slate-700 space-y-4">
+            <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto text-2xl">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Selesaikan dan Kirim Jawaban?</h3>
+            <p id="confirmModalText" class="text-xs text-slate-600 dark:text-slate-300">
+                Apakah Anda yakin ingin mengakhiri tes? Silakan periksa kembali jawaban Anda.
+            </p>
+            <div class="flex items-center justify-center space-x-3 pt-2">
+                <button onclick="closeConfirmModal()" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 text-slate-800 dark:text-slate-200 text-xs font-bold rounded-lg transition">
+                    Kembali Periksa
+                </button>
+                <button onclick="processFinalSubmission()" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg shadow transition">
+                    Ya, Kirim Sekarang
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT EXAM ENGINE & DATASET -->
+    <script>
+        /* ==========================================================================
+           1. COMPLETE QUESTION DATASET (SOAL 1 - 30 ATS DESCRIPTIVE TEXT KELAS XI)
+           ========================================================================== */
+        const examQuestions = [
+            {
+                id: 1,
+                title: "Mount Bromo: A Living Mountain in East Java",
+                passage: `Mount Bromo is one of the most famous volcanoes in Indonesia. It stands about 2,329 metres above sea level and is located in Bromo Tengger Semeru National Park, East Java. Although it is not the highest mountain in the area, it is the most popular one because of its unusual shape and the wide sea of sand around it.\n\nThe mountain sits inside a huge caldera called the Tengger Caldera. From far away, Bromo looks like a giant bowl with several peaks inside it. The floor of the caldera is covered by fine grey volcanic sand, and local people call this area Segara Wedi, which means “sea of sand”. The sand feels soft and warm under the sun, and small clouds of dust rise into the air when horses and jeeps pass by.\n\nThe most interesting part of Bromo is its crater. Visitors climb about 250 concrete steps to reach the edge. From the top, they can see thick white smoke coming out of the crater and hear a low, continuous sound like a strong wind. The smell of sulphur is quite sharp, so many visitors wear masks. The crater walls are grey and brown, and deep lines run down the sides. These lines are made by heavy rain and falling rocks.\n\nAround Bromo lives the Tengger community. They are farmers who grow onions, potatoes, and cabbages on the cool slopes. Once a year they hold a ceremony called Yadnya Kasada. During this ceremony, they throw vegetables, rice, and other offerings into the crater. The ceremony shows the long relationship between the people and the mountain.\n\nSunrise is the best time to visit Bromo. From the Penanjakan viewpoint, the sky slowly turns orange, and the peaks appear above a thin layer of mist. For many visitors, standing there in the cold morning air is an experience they never forget.`,
+                type: "MC",
+                prompt: "Which option shows the correct flow of information in the text from beginning to end?",
+                options: [
+                    "the caldera and sand sea, sunrise, general introduction, the crater, the community",
+                    "general introduction, the caldera and sand sea, the crater, the community, sunrise",
+                    "the crater, general introduction, the community, the caldera and sand sea, sunrise",
+                    "the community, the crater, general introduction, sunrise, the caldera and sand sea",
+                    "sunrise, the community, the caldera and sand sea, the crater, general introduction"
+                ],
+                correctKey: 1, // B
+                explanation: "<b>Kunci Jawaban: B</b><br>Teks deskriptif ini memiliki struktur alur informasi sebagai berikut:<br>• Paragraf 1: General introduction (Pengenalan umum Gunung Bromo).<br>• Paragraf 2: Tengger Caldera dan Lautan Pasir (Segara Wedi).<br>• Paragraf 3: Deskripsi bagian kawah (crater).<br>• Paragraf 4: Masyarakat Tengger (community) dan upacara Yadnya Kasada.<br>• Paragraf 5: Pemandangan matahari terbit (sunrise) di Penanjakan."
+            },
+            {
+                id: 2,
+                title: "The Komodo Dragon",
+                passage: `The Komodo dragon is the largest lizard in the world. It lives only on a few islands in East Nusa Tenggara, such as Komodo, Rinca, Gili Motang, and the western part of Flores. Scientists call it Varanus komodoensis, and local people call it ora.\n\nAn adult Komodo dragon can grow up to three metres long and weigh around 70 to 90 kilograms. Its body is covered with rough, dark grey skin that looks like small stones. Under the skin there are tiny bones called osteoderms. These bones work like natural armour and protect the animal during a fight. Its four legs are short but very strong, and each foot has sharp claws.\n\nThe head of a Komodo dragon is long and flat. Inside its mouth there are about 60 teeth. Each tooth is curved and has a sharp edge, like a small saw. The teeth often fall out and grow again during the animal’s life. Its most famous body part is the long yellow tongue, which splits into two at the end. The dragon pushes its tongue out to collect small particles from the air. Then it puts the tongue on a special organ on the roof of its mouth. In this way, the dragon can smell dead animals from a distance of up to nine kilometres, even when the wind is weak.\n\nA Komodo dragon usually moves slowly, but it can run at about 20 kilometres per hour for a short time. It hunts deer, wild pigs, and buffalo. Its saliva contains dangerous bacteria and a mild venom that makes the victim weak.\n\nToday there are fewer than 4,000 Komodo dragons in the wild. The government protects them inside Komodo National Park, which became a UNESCO World Heritage Site in 1991. Visitors must walk with a ranger and keep a safe distance from the animals.`,
+                type: "MC",
+                prompt: "According to the text, how can a Komodo dragon find food from a long distance?",
+                options: [
+                    "It feels ground movement through the small bones under its rough skin.",
+                    "It runs twenty kilometres per hour around the island every single morning.",
+                    "It listens to moving animals with its flat head and strong legs.",
+                    "It collects air particles using its forked tongue and a special organ.",
+                    "It follows the footprints of deer and wild pigs across the sand."
+                ],
+                correctKey: 3, // D
+                explanation: "<b>Kunci Jawaban: D</b><br>Berdasarkan paragraf 3 kalimat 4-6: Komodo menjulurkan lidahnya yang bercabang untuk mengumpulkan partikel di udara, lalu menempelkannya ke organ khusus di langit-langit mulutnya (Jacobson's organ) untuk mencium bau mangsa dari jarak hingga 9 km."
+            },
+            {
+                id: 3,
+                title: "Borobudur Temple",
+                passage: `Borobudur is the largest Buddhist temple in the world. It stands in Magelang, Central Java, on a small hill between two twin volcanoes, Merapi and Merbabu, and two rivers, the Progo and the Elo. The temple was built in the ninth century during the Syailendra dynasty. Workers used about two million stone blocks, and they joined the blocks without any cement.\n\nFrom above, Borobudur looks like a giant lotus flower. The building has ten levels. The first level represents the world of desire, the next six levels represent the world of forms, and the top three round terraces represent the world of formlessness. Visitors walk clockwise from the bottom to the top. This walking path is not only a route but also a lesson, because it shows the stages of Buddhist teaching step by step.\n\nThe walls of the lower levels are covered with 2,672 relief panels. These panels tell stories about daily life in ancient Java, about ships and trade, and about the life of Buddha. Many researchers study the ship reliefs to learn how Javanese sailors travelled across the ocean more than a thousand years ago.\n\nOn the three round terraces there are 72 small stupas. Each stupa has a diamond or square hole in its wall, and inside almost every stupa there is a statue of Buddha. However, several statues are now missing or damaged, so a few stupas are empty. In the centre of the highest terrace stands one large main stupa, which is closed and has no statue inside.\n\nThe temple was hidden under volcanic ash and plants for hundreds of years. In 1814, a team under Thomas Stamford Raffles started to clear the site. A large restoration project with UNESCO finished in 1983, and Borobudur became a World Heritage Site in 1991. Today the temple is both a place of worship and an open-air museum of Javanese history.`,
+                type: "TF",
+                prompt: "Decide whether each statement is TRUE or FALSE based on the text.",
+                statements: [
+                    "Every small stupa on the round terraces still contains a complete Buddha statue.",
+                    "Borobudur was built during the ninth century under the rule of Syailendra dynasty.",
+                    "The ten levels of the temple represent the stages of Buddhist religious teaching."
+                ],
+                correctKey: [false, true, true],
+                explanation: "<b>Kunci Jawaban: (1) Salah, (2) Benar, (3) Benar</b><br>• Pernyataan 1 <i>Salah</i>: Paragraf 4 menyebutkan beberapa patung Buddha hilang atau rusak sehingga beberapa stupa kosong.<br>• Pernyataan 2 <i>Benar</i>: Paragraf 1 menyatakan dibangun abad ke-9 pada masa Dinasti Syailendra.<br>• Pernyataan 3 <i>Benar</i>: Paragraf 2 menyatakan 10 tingkatan melambangkan tahapan ajaran Buddha."
+            },
+            {
+                id: 4,
+                title: "Singapore: A City That Thinks",
+                passage: `Singapore is often called a “smart city”. The city-state is small, only about 730 square kilometres, and it has almost six million people. Because land and water are limited, the government uses technology to manage daily life more efficiently.\n\nThe first thing visitors notice is the transport system. Trains and buses arrive every few minutes, and a single card works for all of them. Thousands of sensors under the roads count vehicles and send the data to a control centre. When traffic becomes heavy, the system changes the traffic lights automatically and sends messages to digital boards along the highway. Drivers also pay a road charge that goes up during busy hours, so many people choose public transport instead.\n\nThe second thing is the green design of the buildings. Many towers have gardens on their walls and roofs. At Gardens by the Bay, eighteen tall metal “Supertrees” collect rainwater and solar energy. Their vertical gardens hold more than 160,000 plants. At night, the Supertrees glow with soft lights, and the park becomes a popular meeting place for families.\n\nWater management is the third important area. Singapore imports some water, but it also recycles used water in special plants. The recycled water is called NEWater, and it is clean enough for factories and even for drinking. Large reservoirs in the middle of the city collect rainwater, and a long barrage keeps sea water out of the Singapore River.\n\nFinally, digital services connect all these systems. Residents use one application to pay bills, book a doctor, or report a broken street lamp. Sensors in public housing blocks help older people who live alone, and the system sends an alert to family members if a person does not move for a long time.\n\nOf course, a smart city also raises questions. Some people worry about privacy, because cameras and sensors are everywhere. Others say that the benefits, such as clean air and short travel time, are worth the cost.`,
+                type: "MC",
+                prompt: "What is the function of the last paragraph in the flow of information in the text?",
+                options: [
+                    "It balances the description by adding a different view about smart cities.",
+                    "It explains the steps of producing NEWater inside the special recycling plants.",
+                    "It lists the names of the digital services used by the residents.",
+                    "It gives the general introduction of Singapore as a modern smart city.",
+                    "It describes the most important technology used in the public transport system."
+                ],
+                correctKey: 0, // A
+                explanation: "<b>Kunci Jawaban: A</b><br>Paragraf terakhir menyajikan perspektif berimbang (perspektif tandingan) mengenai isu privasi akibat kamera dan sensor, yang mengimbangi seluruh penjelasan keuntungan teknologi pada paragraf sebelumnya."
+            },
+            {
+                id: 5,
+                title: "Plastic in Our Ocean",
+                passage: `Every year, about eleven million tonnes of plastic waste flow into the ocean. Rivers carry most of this waste from cities and villages to the sea. Indonesia has more than 17,000 islands and a very long coastline, so the problem is easy to see along many beaches.\n\nPlastic does not disappear. Sunlight and salt water break a plastic bottle into smaller and smaller pieces. When the pieces become smaller than five millimetres, scientists call them microplastics. These tiny pieces float in the water and look like plankton. Small fish eat them by mistake, bigger fish eat the small fish, and finally the plastic reaches the human dinner table. Researchers have already found microplastics in salt, in bottled water, and in the bodies of people.\n\nThe effect on animals is serious. Sea turtles often eat plastic bags because the bags look like jellyfish. Seabirds feed small pieces of plastic to their chicks. On Kapota Island in Wakatobi, researchers once found more than a hundred pieces of plastic inside the stomach of a single dead whale. Plastic also damages coral reefs, because sharp pieces cut the coral and bring bacteria.\n\nHowever, the news is not only bad. Several communities have started to act. In Bali, a group of students built a simple river barrier that catches floating rubbish before it reaches the sea. In Surabaya, passengers can pay for a bus ticket with plastic bottles, and the city sends the bottles to a recycling factory. Some small companies now make bags from cassava starch. These bags look like plastic, but they dissolve in hot water in a few minutes.\n\nScientists say that recycling alone is not enough, because only about nine per cent of all plastic in the world is really recycled. The most effective step is to reduce single-use plastic at the beginning, for example by bringing our own bottle and shopping bag.`,
+                type: "CMC",
+                prompt: "Choose THREE statements that are supported by the information in the text.",
+                options: [
+                    "Microplastics can enter the human body through ordinary food and drinking water.",
+                    "All plastic waste in the ocean comes directly from ships and boats.",
+                    "Sea turtles swallow plastic bags because the bags resemble their natural food.",
+                    "Recycling alone is already enough to solve the ocean plastic waste problem.",
+                    "Several communities in Indonesia have created local solutions against plastic waste problems."
+                ],
+                correctKey: [0, 2, 4], // A, C, E
+                explanation: "<b>Kunci Jawaban: A, C, E</b><br>• (A) Didukung paragraf 2: Mikroplastik ditemukan pada garam, air kemasan, dan tubuh manusia.<br>• (C) Didukung paragraf 3: Penyu makan kantong plastik karena mirip ubur-ubur (makanan alaminya).<br>• (E) Didukung paragraf 4: Contoh aksi komunitas di Bali (penghalang sampah sungai) dan Surabaya (tiket bus bayar plastik)."
+            },
+            {
+                id: 6,
+                title: "The Human Heart",
+                passage: `The heart is one of the most important organs in the human body. It is about the size of a closed fist and weighs between 250 and 350 grams. The heart lies in the chest, a little to the left, and it is protected by the ribs and by a thin bag called the pericardium.\n\nThe heart is a muscle, but it is not like the muscles in the arms. The muscle of the heart, called cardiac muscle, never gets tired. It works from before a baby is born until the end of a person’s life. In one day, a healthy heart beats about 100,000 times and pumps around 7,500 litres of blood.\n\nInside, the heart has four rooms, or chambers. The two upper rooms are called atria, and the two lower rooms are called ventricles. Four valves work like small doors between the rooms. They open to let the blood go forward and close to stop the blood from going back. The familiar “lub-dub” sound of a heartbeat is actually the sound of these valves closing.\n\nThe blood follows a clear path. Used blood from the body enters the right atrium, moves into the right ventricle, and travels to the lungs. In the lungs, the blood releases carbon dioxide and takes oxygen. The fresh blood returns to the left atrium, goes into the left ventricle, and is pushed out to the whole body through a large tube called the aorta. The wall of the left ventricle is the thickest part of the heart because this chamber must push the blood a very long way.\n\nTeenagers can keep their heart healthy in simple ways. Doctors suggest at least sixty minutes of physical activity every day, less salt and fried food, enough sleep, and no smoking. A strong heart in the teenage years usually means a healthier body many years later.`,
+                type: "MC",
+                prompt: "According to the text, why is the wall of the left ventricle the thickest part of the heart?",
+                options: [
+                    "Because it protects the heart from the pressure of the human ribs.",
+                    "Because it produces the familiar lub-dub sound of the beating human heart.",
+                    "Because it receives the used blood that returns from the two lungs.",
+                    "Because it holds the largest amount of blood inside the whole body.",
+                    "Because it must push blood to the whole body through the aorta."
+                ],
+                correctKey: 4, // E
+                explanation: "<b>Kunci Jawaban: E</b><br>Dinyatakan secara eksplisit di akhir Paragraf 4: <i>'The wall of the left ventricle is the thickest part of the heart because this chamber must push the blood a very long way.'</i> (ke seluruh tubuh melalui aorta)."
+            },
+            {
+                id: 7,
+                title: "Solar Panels on the School Roof",
+                passage: `SMA Harapan Bangsa is a public school in a small town in Central Java. Last year, the school installed forty solar panels on the roof of the science building. The panels are dark blue and flat, and together they cover an area of about eighty square metres. From the school field, they look like a large mirror that changes colour when the clouds move.\n\nEach panel contains many small cells made of silicon. When sunlight hits the cells, the cells release electrons, and the movement of these electrons creates direct current. A machine called an inverter changes this current into the alternating current used by lamps, fans, and computers. A digital screen in the school lobby shows the electricity produced at that moment, the total for the day, and the amount of carbon dioxide the school has saved.\n\nThe results in the first year were interesting. Between eight in the morning and two in the afternoon, the panels produced more electricity than the science building needed. The extra electricity went back to the public network, and the school received a discount on its bill. The monthly bill fell by about thirty-five per cent. However, during the rainy season in January and February, the production dropped sharply for several days, and the school still had to buy electricity from the network. The panels also need cleaning, because dust and dry leaves reduce their performance.\n\nThe panels have changed the way students learn. In physics lessons, students read the data from the screen and draw graphs of production and weather. In economics lessons, they calculate how many years the school needs to return the cost of the installation. A group of students now writes a short weekly report and posts it on the school website.\n\nThe headmaster says the project is not only about saving money. It is also a daily lesson that stands on the roof, visible to everyone who enters the school gate.`,
+                type: "MC",
+                prompt: "What can be inferred from the text about the solar panel project?",
+                options: [
+                    "The panels work best during the rainy season because the air is cleaner.",
+                    "The project brings both financial and educational benefits, although it remains not perfect.",
+                    "The students installed the forty solar panels on the school roof by themselves.",
+                    "The school plans to sell the electricity to other schools in the town.",
+                    "The school no longer needs any electricity from the public network at all."
+                ],
+                correctKey: 1, // B
+                explanation: "<b>Kunci Jawaban: B</b><br>Kesimpulan yang tepat: Proyek ini memberikan keuntungan finansial (tagihan hemat 35%) dan edukasional (digunakan untuk pelajaran Fisika & Ekonomi), namun tidak sempurna karena terpengaruh musim hujan dan debu."
+            },
+            {
+                id: 8,
+                title: "Raja Ampat",
+                passage: `Raja Ampat is a group of islands in Southwest Papua. The name means “Four Kings”, and it comes from a local legend about four eggs that became four kings of the four main islands: Waigeo, Batanta, Salawati, and Misool. In total, the area contains more than 1,500 small islands, cays, and rocks spread over 40,000 square kilometres of sea.\n\nThe landscape is easy to recognise. Hundreds of green karst islands rise from the water like mushrooms. Their lower parts are narrow because sea water has slowly eaten the limestone for thousands of years. The most famous viewpoint is Piaynemo. Visitors climb about 320 wooden steps to a small platform, and from there they can see a group of islands around a bright turquoise lagoon.\n\nUnder the water, Raja Ampat is even more impressive. Scientists have recorded around 1,600 species of fish and about 75 per cent of all hard coral species known in the world. This is the highest coral diversity on the planet. Divers can meet manta rays, wobbegong sharks, and tiny pygmy seahorses that are smaller than a fingernail. The water is usually warm, around 28 degrees Celsius, and visibility often reaches twenty metres.\n\nTourism has grown quickly, and this growth brings both money and pressure. Many families now run small homestays with simple wooden rooms built over the water. The homestay programme keeps most of the income inside the villages. At the same time, more boats mean more waste and more damage to the coral. For this reason, every visitor must buy an environmental card. The money from this card supports patrol boats and local conservation teams.\n\nLocal rules also help. Several villages practise sasi, a traditional system that closes an area of sea for a certain period. During the closed period, nobody may take fish or sea cucumbers from that area, so the population has time to grow again.`,
+                type: "TF",
+                prompt: "Decide whether each statement is TRUE or FALSE based on the text.",
+                statements: [
+                    "The name Raja Ampat comes from a legend about four eggs becoming kings.",
+                    "Sasi is a modern government programme that allows fishing during the whole year.",
+                    "Raja Ampat has the highest diversity of hard coral species in the world."
+                ],
+                correctKey: [true, false, true],
+                explanation: "<b>Kunci Jawaban: (1) Benar, (2) Salah, (3) Benar</b><br>• Statement 1 <i>Benar</i>: Paragraf 1 menjelaskan legenda empat telur menjadi raja.<br>• Statement 2 <i>Salah</i>: Sasi adalah sistem adat tradisional (bukan program pemerintah modern) yang *melarang/menutup* penangkapan ikan sementara.<br>• Statement 3 <i>Benar</i>: Paragraf 3 menyatakan Raja Ampat memiliki keanekaragaman karang keras tertinggi di dunia (75%)."
+            },
+            {
+                id: 9,
+                title: "Two Ways of Shopping",
+                passage: `Pasar Beringharjo in Yogyakarta opens at six in the morning. The building is old, with a wide front gate and a high roof of grey tiles. Inside, narrow paths run between hundreds of stalls. On the ground floor, sellers arrange fresh vegetables, chillies, and fish on wooden tables. The air smells of spices and wet soil. On the upper floor, long rows of batik cloth hang from the ceiling in red, brown, and dark blue. Sellers call to visitors, and buyers answer with a lower price. This conversation, called tawar-menawar, is part of the experience. A buyer can touch the cloth, check the pattern, and feel the weight of the fabric before paying.\n\nAn online marketplace works in a very different way. It never closes, and it exists only on a screen. The home page shows small square photographs, a search box, and a filter menu. A buyer types the word “batik”, and in less than a second the application shows thousands of products from sellers all over the country. Each product has a price, a rating with stars, and comments from other buyers. There is no smell, no sound, and no bargaining. Instead, there are discount vouchers and free delivery programmes.\n\nBoth ways of shopping have strong points. In the traditional market, the buyer meets the seller face to face and can build a long relationship. Many sellers in Beringharjo know their regular customers by name. Money also stays in the local economy. In the online marketplace, the buyer saves time, compares many prices quickly, and can order from home late at night.\n\nBoth also have weak points. The traditional market is crowded, and parking is difficult. The online marketplace shows only photographs, so the real product is sometimes different from the picture, and returning an item takes several days.\n\nMany young people in Yogyakarta now use both. They buy vegetables in the market and electronics online.`,
+                type: "MC",
+                prompt: "Which option best describes how the writer organises the information in the text?",
+                options: [
+                    "The writer states one problem first and then offers several solutions in clear order.",
+                    "The writer describes the traditional market only and then gives a long personal opinion.",
+                    "The writer describes two places, their strong points, weak points, and the present habits.",
+                    "The writer lists the history of both shopping systems in a strict chronological order.",
+                    "The writer explains the steps of buying batik from the first to the last."
+                ],
+                correctKey: 2, // C
+                explanation: "<b>Kunci Jawaban: C</b><br>Penulis mengorganisasikan informasi dengan mendeskripsikan dua jenis tempat belanja (Pasar Tradisional & Online Marketplace), keunggulan (strong points), kelemahan (weak points), serta kebiasaan masyarakat saat ini (present habits)."
+            },
+            {
+                id: 10,
+                title: "Rafflesia Arnoldii",
+                passage: `Rafflesia arnoldii is famous as the flower with the largest single bloom in the world. It grows in the rainforests of Sumatra and Borneo, especially in the provinces of Bengkulu, West Sumatra, and Jambi. Indonesians often call it padma raksasa, which means “giant lotus”, although the plant is not related to the lotus at all.\n\nOne open flower can reach a diameter of about one metre and weigh up to eleven kilograms. The flower has five thick petals. Each petal is brick red with irregular white or cream spots, and the surface feels rough, like old leather. In the centre there is a deep cup-shaped hole. Inside this hole stands a disc with many short spines.\n\nThe plant is unusual because it has no leaves, no stem, and no roots of its own. It cannot make its own food from sunlight. Instead, it lives as a parasite on the root or the stem of a vine of the genus Tetrastigma. Thin threads of the Rafflesia grow inside the vine and take water and nutrients from it. For most of its life, the plant is completely invisible from the outside.\n\nThe life cycle is slow and risky. After many months, a small brown bud appears on the vine. The bud grows slowly, like a dark cabbage, and needs about nine months to become large enough. Then the flower opens. It stays open for only five to seven days, and after that it turns black and collapses.\n\nDuring those few days, the flower produces a strong smell of rotting meat. For this reason people also call it the “corpse flower”. The smell is not pleasant for humans, but it attracts carrion flies. The flies carry pollen from a male flower to a female flower.\n\nRafflesia is now threatened because the forest is being cut for farms and roads. Local communities in Bengkulu protect several sites and guide visitors to see the blooms.`,
+                type: "TF",
+                prompt: "Decide whether each statement is TRUE or FALSE based on the text.",
+                statements: [
+                    "The open flower stays fresh for about nine months before turning completely black.",
+                    "Rafflesia arnoldii takes all its water and nutrients from a living Tetrastigma vine.",
+                    "The strong smell of the flower attracts carrion flies that carry its pollen."
+                ],
+                correctKey: [false, true, true],
+                explanation: "<b>Kunci Jawaban: (1) Salah, (2) Benar, (3) Benar</b><br>• Pernyataan 1 <i>Salah</i>: Paragraf 4 menyebutkan bunga mekar hanya 5-7 hari (9 bulan adalah waktu pertumbuhannya dari kuncup).<br>• Pernyataan 2 <i>Benar</i>: Paragraf 3 menjelaskan Rafflesia mengambil air dan nutrisi dari tanaman merambat *Tetrastigma*.<br>• Pernyataan 3 <i>Benar</i>: Paragraf 5 menyebut bau daging busuk menarik lalat bangkai untuk penyerbukan."
+            },
+            {
+                id: 11,
+                title: "The Electric Motorcycle in My Neighbourhood",
+                passage: `My neighbour, Mr Danu, bought an electric motorcycle six months ago, and it has become a small attraction on our street. The body is matte grey with thin blue lines along the side. It looks similar to an ordinary scooter, but the front is smoother because there is no radiator and no exhaust pipe at the back.\n\nThe most surprising thing is the sound, or rather the lack of it. When Mr Danu turns the key, nothing happens. Only a soft blue light appears on the round digital screen. When he opens the throttle, the motorcycle moves forward with a quiet electric hum, like a fan in an empty room. Children in our street often do not hear it coming, so Mr Danu now presses the horn near the corner.\n\nUnder the seat there are two removable batteries. Each battery is about the size of a large textbook and weighs around seven kilograms. Mr Danu carries them into his house and charges them from a normal wall socket. A full charge takes four hours and costs about four thousand rupiah. With full batteries, he can travel around sixty-five kilometres, which is enough for four days of going to his office and back.\n\nThe savings are clear. Before, he spent about three hundred thousand rupiah on fuel every month. Now he pays roughly fifty thousand rupiah for electricity. He also does not change engine oil, and the machine has fewer moving parts, so the service cost is lower.\n\nThere are still problems. The price of the motorcycle was higher than a petrol model of the same size. On a long trip to another city, he must plan carefully, because public charging or battery-swap stations are still rare outside big cities. Heavy rain also makes him nervous, although the seller says the battery is protected against water.`,
+                type: "CMC",
+                prompt: "Choose THREE statements that are supported by the information in the text.",
+                options: [
+                    "The batteries cannot be removed and must be charged at public stations.",
+                    "The electric motorcycle produces much less sound than an ordinary petrol motorcycle.",
+                    "The electric motorcycle was cheaper to buy than a similar petrol model.",
+                    "Mr Danu now spends less money on energy than he did before.",
+                    "Long trips outside big cities need planning because charging places are rare."
+                ],
+                correctKey: [1, 3, 4], // B, D, E
+                explanation: "<b>Kunci Jawaban: B, D, E</b><br>• (B) Paragraf 2: Suaranya sangat hening hanya berupa dengungan halus.<br>• (D) Paragraf 4: Pengeluaran energi turun dari Rp300.000 (bensin) menjadi Rp50.000 (listrik).<br>• (E) Paragraf 5: Perjalanan antar kota butuh perencanaan karena tempat charge masih langka."
+            },
+            {
+                id: 12,
+                title: "Our Vertical Garden",
+                passage: `(a draft paragraph written by a student for the school magazine)\nOur school built a vertical garden on the wall next to the canteen last semester. The garden is nice. It is made of many plastic bottles. The bottles are arranged in rows. There are many plants in the bottles. The plants are green. Students water the plants every morning. The garden is good. Teachers like it. Visitors also like it. The garden makes the school better.\n\nThe idea came from the Environment Club. Last year the club collected used bottles from the canteen for three months. Members cut the bottles, made small holes in the bottom, and tied them to a metal frame with strong wire. The frame is four metres wide and two and a half metres high. Now the wall holds 240 bottles in twelve rows.\n\nThe plants are not only decoration. Each row has a different function. The top rows hold spinach and lettuce, and the canteen uses these vegetables twice a month. The middle rows hold mint and basil, which release a fresh smell in the afternoon. The bottom rows hold ferns, which grow well in the shade near the ground.\n\nA simple drip system runs along the top of the frame. Water flows slowly from a tank, passes through the upper bottles, and drips down into the lower ones. A student on duty opens the tap for ten minutes in the morning. In this way the garden uses about seventy per cent less water than watering each plant by hand.\n\nThe teachers of Biology and Art now use the wall for their lessons. Biology students measure the growth of the plants every Friday and record the results in a shared spreadsheet. Art students painted small numbers and plant names on the bottles in white and dark green. Last month the club also added a small wooden sign that explains, in two languages, how many bottles the wall has saved from the rubbish bin since the project started.`,
+                type: "MC",
+                prompt: "The first paragraph is weak because the writer repeats simple sentences and general adjectives. Which revision best improves the first paragraph as a descriptive text?",
+                options: [
+                    "Combine the short sentences and add specific details about size, colour and position.",
+                    "Move the first paragraph to the end without changing any sentence inside it.",
+                    "Delete the first paragraph and begin the text with the writer’s personal opinion.",
+                    "Replace every adjective with the words very good so the tone sounds stronger.",
+                    "Change every verb into the past tense so the paragraph sounds more academic."
+                ],
+                correctKey: 0, // A
+                explanation: "<b>Kunci Jawaban: A</b><br>Paragraf deskriptif yang baik menghindari kalimat pendek berulang. Menggabungkan kalimat dan menambahkan detail spesifik tentang ukuran, warna, dan posisi adalah cara terbaik untuk merevisi teks deskriptif."
+            },
+            {
+                id: 13,
+                title: "Museum Gunung Merapi – Visitor Brochure (draft)",
+                passage: `Welcome to Museum Gunung Merapi. Museum Gunung Merapi stands in Sleman, Yogyakarta, about five kilometres from the southern slope of Mount Merapi. The building itself is the first thing you will notice: a large white cone with a sharp point, designed to look like a volcano rising from the green field around it.\n\nGround floor – The Power of the Mountain. In the main hall you will find a model of Merapi that is four metres wide. Press the red button and watch a simulated eruption: red lights move down the slope while a deep sound fills the room. Next to the model, a glass case holds objects collected after the 2010 eruption — a melted television, a bent bicycle, and a clock that stopped at 00:05.\n\nFirst floor – Living with Volcanoes. This floor explains how volcanoes work. Touch the screens to see the layers under the earth, the movement of magma, and the different types of volcanic material. A short film in the mini theatre shows interviews with farmers who returned to their villages after the eruption.\n\nPractical Information\nOpen: Tuesday–Sunday, 08.00–15.30. Closed on Monday and public holidays.\nTicket: Rp5,000 (students), Rp10,000 (general), Rp20,000 (foreign visitors).\nFilm in the mini theatre: Rp5,000 per person.\nFree parking for cars, buses, and motorcycles.\nPlease do not touch the objects in the glass cases.\n\nGetting Here. From the centre of Yogyakarta, take Jalan Kaliurang to the north for about twenty-five minutes by car. The museum is on the left side, 200 metres after the Pakem market. Public minibuses from Terminal Condongcatur stop at the Pakem junction, and from there the walk takes ten minutes along a flat pavement.\n\nBefore You Leave. The garden behind the building offers a clear view of the summit on bright mornings, usually before nine o’clock. A small shop near the exit sells postcards, volcanic stone souvenirs, and cold drinks. Groups of more than twenty people are kindly requested to book a guide one week in advance by telephone or through the official website.`,
+                type: "MC",
+                prompt: "The writer wants to add one more sentence at the end of the brochure. Which sentence is the most suitable for the purpose and the media of this text?",
+                options: [
+                    "A. Volcanoes are formed when deep magma reaches the surface through a weak crustal point.",
+                    "B. The writer of this brochure has visited the museum three times since last year.",
+                    "C. Mount Merapi erupted in 2010 and caused serious damage to several villages in Sleman.",
+                    "D. Plan your visit today and discover the story of Indonesia’s most active living volcano.",
+                    "E. In my opinion the museum building is too big for its own small collection."
+                ],
+                correctKey: 3, // D
+                explanation: "<b>Kunci Jawaban: D</b><br>Brosur wisata berfungsi mengajak pembaca (Call to Action). Kalimat <i>'Plan your visit today and discover the story of Indonesia’s most active living volcano'</i> sangat sesuai sebagai penutup brosur."
+            },
+            {
+                id: 14,
+                title: "Lake Toba (Text A & Text B)",
+                passage: `Text A – Social media caption:\nWoke up at 4 a.m. for this. 😍 The mist was sitting on the water like a thick white blanket, and Samosir looked like a green ship floating in the middle of nowhere. My hands were freezing, my jacket was wet, zero regrets. We took the first ferry from Parapat and honestly the ride was already the best part — the water changes colour every ten minutes, from grey to silver to this crazy deep blue. ⛴️ Coffee at the little warung by the pier = best 8k I ever spent... Swipe for the sunrise (pic 4 is unedited, I promise). Who’s coming with me next time?? 🙋 #LakeToba #Samosir\n\nText B – Paragraph from a tourism board website:\nLake Toba is located in the highlands of North Sumatra, approximately 900 metres above sea level. With a length of 100 kilometres, a width of 30 kilometres, and a maximum depth of 505 metres, it is the largest volcanic lake in the world and one of the deepest lakes on earth. The lake occupies a caldera that was formed by a supervolcanic eruption between 69,000 and 77,000 years ago...`,
+                type: "CMC",
+                prompt: "Choose THREE statements that correctly compare Text A and Text B.",
+                options: [
+                    "Text A uses informal language and hashtags while Text B uses formal factual language.",
+                    "Both texts share the same purpose of giving scientific data about the lake formation.",
+                    "Text A focuses on personal experience while Text B focuses on measurable general data.",
+                    "Text B suits a school report about geography better than Text A clearly does.",
+                    "Text A is longer and contains more technical terms than Text B really does."
+                ],
+                correctKey: [0, 2, 3], // A, C, D
+                explanation: "<b>Kunci Jawaban: A, C, D</b><br>• (A) Text A menggunakan bahasa informal & hashtag, sedangkan Text B menggunakan bahasa formal faktual.<br>• (C) Text A berfokus pada pengalaman pribadi, Text B berfokus pada data statistik/faktual.<br>• (D) Text B lebih cocok untuk laporan sekolah bidang geografi daripada Text A."
+            },
+            {
+                id: 15,
+                title: "The Hot Heart of the City",
+                passage: `At two o’clock in the afternoon, Jalan Sudirman in Jakarta feels like an open oven. The thermometer on a bank building shows 36 degrees Celsius. Twenty kilometers away, in the hills of Bogor, the same afternoon is only 29 degrees. Scientists call this difference the urban heat island effect.\n\nThe reason is mainly the surface of the city. Asphalt and dark concrete absorb sunlight during the day and hold the heat inside. At night they release it slowly, so the air between the buildings never becomes really cool. A study of several Asian cities found that the night temperature in a city center can stay four degrees higher than in the countryside around it. Grass and soil behave differently. They hold water, and when the water evaporates, the surface becomes cooler. A tree with a wide crown can lower the temperature under it by five degrees.\n\nBuildings also shape the wind. Tall towers standing close together create narrow corridors. Wind cannot pass easily, so warm air stays in the streets. On top of this, air conditioners, engines, and factories add their own heat. An air conditioner cools a room, but it pushes the heat outside into the street.\n\nThe consequences reach beyond comfort. Hospitals report more patients with dehydration and heat stress during long hot periods, and older people and outdoor workers are the most vulnerable. Electricity demand rises sharply in the afternoon because everybody switches on the air conditioning, and this extra demand usually comes from power plants that burn coal.\n\nSome cities are trying to answer the problem. Medellín in Colombia planted thirty green corridors along its main roads and reduced the local temperature by about two degrees in three years. Jakarta has begun to build small parks on empty land and to paint some roofs white so that they reflect sunlight.`,
+                type: "MC",
+                prompt: "What can be concluded from the text about the urban heat island effect?",
+                options: [
+                    "It exists only in Jakarta and in a few other large cities in Colombia.",
+                    "It comes mainly from the tropical climate and therefore cannot be changed by people.",
+                    "It comes from city materials, shapes and activities, so good planning can reduce it.",
+                    "It affects only those people who work inside air-conditioned office buildings every single day.",
+                    "It disappears completely at night when the traffic in the city becomes much quieter."
+                ],
+                correctKey: 2, // C
+                explanation: "<b>Kunci Jawaban: C</b><br>Kesimpulan utama teks: Fenomena *urban heat island* disebabkan oleh material kota, bentuk bangunan, dan aktivitas manusia, sehingga perencanaan kota yang baik (taman, koridor hijau) dapat menguranginya."
+            },
+            {
+                id: 16,
+                title: "Chatbots in the Classroom",
+                passage: `Two years ago, almost no student in SMA Nusantara used an artificial intelligence chatbot. Today, a survey by the school library shows that seventy-eight per cent of the students in grade eleven use one at least twice a week, mostly for homework in English, Mathematics, and History...\n\nMrs Rina says that her weaker students write longer paragraphs because the chatbot explains grammar patterns in simple words. Mr Bagus sees another side: he received essays with invented quotations. The students themselves are divided: Sari says it saves hours, Dimas feels writing without it became harder...\n\nThe school is now writing a policy. The draft allows the use of chatbots for explanation, planning, and checking, but not for producing the final text of an assessment.`,
+                type: "CMC",
+                prompt: "Your teacher asks you to write an opinion: “AI chatbots should be allowed at school, but with clear rules.” Choose THREE arguments from the text that best support this opinion.",
+                options: [
+                    "Students who use chatbots always remember the content much better one week later.",
+                    "Chatbots help weaker students understand grammar through very simple and repeated patient explanations.",
+                    "Chatbots sometimes produce false information, so students need rules about checking their sources.",
+                    "Chatbots are able to replace teachers when explaining difficult concepts inside the classroom.",
+                    "Most students already use chatbots now, so a complete school ban is unrealistic."
+                ],
+                correctKey: [1, 2, 4], // B, C, E
+                explanation: "<b>Kunci Jawaban: B, C, E</b><br>• (B) Didukung pernyataan Ibu Rina tentang penjelasan tata bahasa berulang.<br>• (C) Didukung kasus Pak Bagus mengenai kutipan palsu/informasi salah dari AI.<br>• (E) Didukung fakta survei bahwa 78% siswa sudah menggunakannya sehingga pelarangan total tidak realistis."
+            },
+            {
+                id: 17,
+                title: "The Real Price of a Cheap T-Shirt",
+                passage: `A T-shirt in a fast fashion shop costs about seventy thousand rupiah. The label looks simple, but the journey behind that piece of cloth is long. Cotton grows in one country, the thread is spun in another, the cloth is dyed in a third, and the shirt is sewn in a fourth...\n\nProducing one cotton T-shirt uses around 2,700 litres of water. Workers earn less than a living wage and work more than sixty hours a week. Old clothes form mountains of waste in landfills...\n\nSome answers already exist: buying fewer but better pieces, repairing clothes, buying second-hand, and choosing brands that publish the names of their factories.`,
+                type: "MC",
+                prompt: "Which opinion is most strongly supported by the information in the text?",
+                options: [
+                    "The main problem of fast fashion is that its clothes are not comfortable enough.",
+                    "Governments should raise cotton prices so that farmers can grow much more cotton yearly.",
+                    "People should stop buying clothes completely because all clothing damages the whole natural environment.",
+                    "Fast fashion is fair because it gives many young women jobs in garment factories.",
+                    "Consumers should buy fewer clothes and keep them longer because low prices hide costs."
+                ],
+                correctKey: 4, // E
+                explanation: "<b>Kunci Jawaban: E</b><br>Teks menekankan bahwa harga kaos murah menyembunyikan dampak lingkungan dan eksploitasi pekerja, sehingga konsumen disarankan membeli lebih sedikit pakaian dan memakainya lebih lama."
+            },
+            {
+                id: 18,
+                title: "What We Throw Away at Lunch",
+                passage: `For two weeks in August, the OSIS of SMA Tunas Mulia carried out a small research project in the school canteen. They found an average of 27 kilograms of food waste every day (mostly plain white rice). In two weeks, the total reached 270 kilograms, which could feed around 900 people for one meal...\n\nThe team suggested two sizes of rice portion, showing waste statistics, and donating surplus food. The canteen tried smaller portions and waste fell by one third without reducing daily income.`,
+                type: "MC",
+                prompt: "Your friend says, “Food waste at school is a small problem and not worth our attention.” Based on the text, which response shows the most reasonable opinion?",
+                options: [
+                    "I agree, because twenty-seven kilograms every day is a very small amount for large schools.",
+                    "I disagree, because two weeks of waste could already feed about nine hundred hungry people.",
+                    "I agree, because students cannot really change the habits of the school canteen at all.",
+                    "I disagree, because the canteen should simply close during the lunch break every school day.",
+                    "I agree, because students collected the data themselves, so the numbers cannot really be used."
+                ],
+                correctKey: 1, // B
+                explanation: "<b>Kunci Jawaban: B</b><br>Argumen tidak setuju (disagree) paling logis karena didukung data penelitian OSIS: limbah makanan dalam 2 minggu (270 kg) setara untuk memberi makan sekitar 900 orang."
+            },
+            {
+                id: 19,
+                title: "When the Coral Turns White",
+                passage: `A healthy coral reef is a city of colour. Inside coral tissues live millions of tiny algae called zooxanthellae which provide food and colour. When sea water becomes 1 degree warmer for several weeks, coral expels algae and turns white (bleaching). Bleached coral is not immediately dead; if water cools in weeks, algae can return. If heat continues, it starves. Local protection helps, but scientists agree global warming needs global action.`,
+                type: "TF",
+                prompt: "Decide whether each statement is TRUE or FALSE based on the text.",
+                statements: [
+                    "A bleached coral is always dead and can never recover in any situation.",
+                    "Local protection alone is completely enough to stop coral bleaching around the world.",
+                    "The colour of a healthy coral comes from tiny algae inside its tissue."
+                ],
+                correctKey: [false, false, true],
+                explanation: "<b>Kunci Jawaban: (1) Salah, (2) Salah, (3) Benar</b><br>• Pernyataan 1 <i>Salah</i>: Karang pemutihan belum tentu mati dan bisa pulih jika suhu air kembali dingin.<br>• Pernyataan 2 <i>Salah</i>: Perlindungan lokal saja tidak cukup tanpa mengatasi pemanasan global.<br>• Pernyataan 3 <i>Benar</i>: Warna karang sehat berasal dari alga mikro (zooxanthellae) di dalam jaringannya."
+            },
+            {
+                id: 20,
+                title: "The Bajau, People of the Sea",
+                passage: `The Bajau are famous for free diving. A skilled diver can stay under water for several minutes and reach a depth of more than twenty metres with only a wooden mask and a spear. In 2018, researchers found the Bajau had a spleen (limpa) about fifty per cent larger than farming communities. The spleen stores red blood cells and releases oxygen-rich cells during a dive — a genetic adaptation developed over a thousand years.`,
+                type: "MC",
+                prompt: "According to the text, why can Bajau divers stay under water longer than most people?",
+                options: [
+                    "Because they spend their entire life on the small wooden boats called lepa.",
+                    "Because they use modern diving equipment made only of strong wood and metal.",
+                    "Because they have a much larger spleen that releases more oxygen-rich blood cells.",
+                    "Because they live in wooden houses built on stilts above the shallow water.",
+                    "Because they learn to read the stars, the currents and the water colour."
+                ],
+                correctKey: 2, // C
+                explanation: "<b>Kunci Jawaban: C</b><br>Dinyatakan di Paragraf 3: Suku Bajau memiliki organ limpa (*spleen*) 50% lebih besar yang menyimpan sel darah merah dan melepaskan lebih banyak oksigen saat menyelam."
+            },
+            {
+                id: 21,
+                title: "The Weather Station on Our Roof",
+                passage: `Our school owns a small automatic weather station on the roof. At the top is an anemometer (measures wind) and wind vane. Below is a radiation shield containing temperature and humidity sensors. On one side stands a rain gauge. All sensors send data by cable to a wireless box and then to the science lab computer. Students use this data in Geography, Math, and Science Club.`,
+                type: "MC",
+                prompt: "Which option best shows the flow of information in the text?",
+                options: [
+                    "its parts from top downwards, the school lessons, introduction of the station, the data system",
+                    "the data system, introduction of the station, the school lessons, its parts from top downwards",
+                    "introduction of the station, the school lessons, the data system, its parts from top downwards",
+                    "introduction of the station, its parts from top downwards, the data system, the school lessons",
+                    "the school lessons, the data system, its parts from top downwards, introduction of the station"
+                ],
+                correctKey: 3, // D
+                explanation: "<b>Kunci Jawaban: D</b><br>Alur teks: 1. Pengenalan stasiun cuaca -> 2. Bagian-bagian alat dari atas ke bawah (anemometer, shield, rain gauge) -> 3. Sistem pengiriman data -> 4. Penggunaan dalam pelajaran sekolah."
+            },
+            {
+                id: 22,
+                title: "Gamelan",
+                passage: `Gamelan is a traditional orchestra from Java and Bali. A complete set contains saron, bonang, kendang, suling, and rebab. The kendang, a double-headed drum made of jackfruit wood and buffalo skin, is played with the hands. The kendang player leads the group and controls the speed with drum patterns.`,
+                type: "MC",
+                prompt: "According to the text, what is the function of the kendang in a gamelan performance?",
+                options: [
+                    "It leads the whole group and controls the speed through its drum patterns.",
+                    "It plays the fast decorations above the main melody of the whole piece.",
+                    "It provides all the seven unequal notes of the complete pelog tuning system.",
+                    "It replaces the rebab when the group plays for a classical Javanese dance.",
+                    "It marks the end of every long musical cycle with a deep sound."
+                ],
+                correctKey: 0, // A
+                explanation: "<b>Kunci Jawaban: A</b><br>Paragraf 4 kalimat 3 menyebutkan: <i>'The kendang player leads the group and controls the speed with drum patterns.'</i>"
+            },
+            {
+                id: 23,
+                title: "Why Teenagers Are Always Tired",
+                passage: `During adolescence, the internal body clock moves. Melatonin (sleep hormone) production starts around two hours later in teens than in children (around 10 PM instead of 8 PM). Blue light from phone screens further delays melatonin. Lack of sleep impairs memory consolidation and reaction time.`,
+                type: "CMC",
+                prompt: "Choose MORE THAN ONE statements that are supported by the information in the text.",
+                options: [
+                    "The teenage body clock produces melatonin later than the body clock of children.",
+                    "Teenagers look sleepy every morning mainly because they are lazy and unmotivated students.",
+                    "Indonesian high school students sleep more than the recommended eight to ten hours.",
+                    "Lack of sleep weakens memory because the energy stores information during eating hours.",
+                    "The blue light from screens reduces the production of the natural sleep hormone."
+                ],
+                correctKey: [0, 4], // A, E
+                explanation: "<b>Kunci Jawaban: A, E</b><br>• (A) Paragraf 2: Hormon melatonin remaja diproduksi 2 jam lebih lambat dari anak-anak.<br>• (E) Paragraf 3: Sinar biru dari layar ponsel mengurangi produksi melatonin alami."
+            },
+            {
+                id: 24,
+                title: "The Forest That Stands in Salt Water",
+                passage: `The mangrove forest at Wonorejo, Surabaya begins where the city ends. First paragraph describes location. Second describes arching roots and vertical pneumatophores. Third explains how leaves handle salt. Fourth describes animals in the mud (fiddler crabs, mudskippers). Fifth explains benefits for the city (wave barrier, carbon storage). Last paragraph tells present condition and field trips.`,
+                type: "MC",
+                prompt: "Which option best describes the flow of information in the text?",
+                options: [
+                    "the benefits for the city, the location, the present condition, the animals, the trees and their roots",
+                    "the animals, the present condition, the location, the trees and their roots, the benefits for the city",
+                    "the present condition, the benefits for the city, the animals, the location, the trees and their roots",
+                    "the trees and their roots, the animals, the benefits for the city, the present condition, the location",
+                    "the location, the trees and their roots, the animals, the benefits for the city, the present condition"
+                ],
+                correctKey: 4, // E
+                explanation: "<b>Kunci Jawaban: E</b><br>Alur teks: 1. Lokasi -> 2. Pohon & akarnya -> 3-4. Hewan-hewan di lumpur -> 5. Manfaat bagi kota -> 6. Kondisi saat ini."
+            },
+            {
+                id: 25,
+                title: "Our New Science Laboratory",
+                passage: `Draft page for school website describes the location, dimensions (12m x 9m), chemical cupboards, safety station, digital microscope, and whiteboards. The last paragraph reads: 'The laboratory is a nice place. Everybody likes it. It is very useful for the students of our school.'`,
+                type: "MC",
+                prompt: "The editor wants the page to be consistent with the rest of the text. Which suggestion should the editor give about the last paragraph?",
+                options: [
+                    "Add adjectives such as wonderful, amazing and fantastic to make it sound much stronger.",
+                    "Keep the paragraph unchanged because a website page always needs friendly short closing sentences.",
+                    "Replace the general sentences with opening hours, laboratory rules and an online booking link.",
+                    "Move the paragraph to the beginning so readers know the writer’s personal feelings first.",
+                    "Change all the sentences into questions so that the readers become much more curious."
+                ],
+                correctKey: 2, // C
+                explanation: "<b>Kunci Jawaban: C</b><br>Untuk halaman informasi laboratorium sekolah di website, penutup yang lemah/umum sebaiknya diganti dengan informasi praktis yang berguna seperti jam buka, tata tertib lab, dan tautan pemesanan."
+            },
+            {
+                id: 26,
+                title: "The Mountain of Old Phones",
+                passage: `World produced 62 million tonnes of e-waste, only 22% recycled properly. E-waste is toxic (lead, mercury) and valuable (gold, silver, copper). Phones are glued making repair difficult. The EU introduced 'right to repair' rules. Indonesian drop boxes collect old phones.`,
+                type: "MC",
+                prompt: "Which opinion is most strongly supported by the information in the text?",
+                options: [
+                    "Electronic waste is not very serious because most of it is already recycled properly.",
+                    "Governments should build more gold mines so companies need not recycle any old phones.",
+                    "People should stop using smartphones because every device contains several really toxic dangerous substances.",
+                    "Manufacturers should design devices that are much easier to repair because design causes waste.",
+                    "Burning cables is an acceptable recycling method because it recovers very valuable copper metal."
+                ],
+                correctKey: 3, // D
+                explanation: "<b>Kunci Jawaban: D</b><br>Paragraf 4 menekankan masalah utama e-waste adalah desain produk yang dilem (*glued*) sehingga susah diperbaiki. Maka produsen harus mendesain perangkat agar lebih mudah diperbaiki."
+            },
+            {
+                id: 27,
+                title: "Six Years of the MRT",
+                passage: `Jakarta MRT opened in March 2019 running 16km Lebak Bulus to Bundaran HI. Inside stations, rules keep floors clean and passengers queue politely. Ridership recovered to 100,000 daily trips. Traffic improved temporarily due to 'induced demand'. Property values rose while some traders faced construction losses.`,
+                type: "TF",
+                prompt: "Decide whether each opinion below is SUPPORTED (TRUE) or NOT SUPPORTED (FALSE) by the information in the text.",
+                statements: [
+                    "The MRT has successfully changed passenger behaviour because most passengers follow the station rules politely.",
+                    "The MRT development brought both advantages and disadvantages for people working near the corridor stations.",
+                    "Building the MRT line alone is already enough to solve the whole Jakarta traffic problem."
+                ],
+                correctKey: [true, true, false],
+                explanation: "<b>Kunci Jawaban: (1) Benar, (2) Benar, (3) Salah</b><br>• Statement 1 <i>Benar</i>: Paragraf 2 menyebutkan penumpang mengantre dengan tertib dan mematuhi aturan.<br>• Statement 2 <i>Benar</i>: Paragraf 5 menjelaskan properti naik (keuntungan) namun pedagang kecil rugi saat konstruksi (kerugian).<br>• Statement 3 <i>Salah</i>: Paragraf 4 menunjukkan MRT saja tidak cukup menyelesaikan kemacetan karena adanya *induced demand*."
+            },
+            {
+                id: 28,
+                title: "Draft Poster for the School Science Fair",
+                passage: `The Science Club designed a poster containing a very long wordy paragraph without bullet points or clear event details, leaving a large empty space on the right side. Essential info like date (12 Oct), time, location, and registration link were omitted from the text.`,
+                type: "CMC",
+                prompt: "Choose MORE THAN ONE revision that would most improve this poster for its purpose and its media.",
+                options: [
+                    "Replace the all text with short lines stating date, time, place and activities clearly.",
+                    "Add a short strong slogan and a clear call to action with the date.",
+                    "Use the empty right space for competitions, registration link or a scannable QR code.",
+                    "Keep the long paragraph but reduce the font size to fill the empty space.",
+                    "Add three paragraphs explaining the history of the science club since its first foundation."
+                ],
+                correctKey: [1, 2], // B, C (Note: Option B & C from original question key)
+                explanation: "<b>Kunci Jawaban: B, C</b><br>Revisi poster yang efektif: Menambahkan slogan singkat & call to action tanggal (B), serta memanfaatkan ruang kosong di sebelah kanan untuk daftar lomba, link pendaftaran/QR Code (C)."
+            },
+            {
+                id: 29,
+                title: "From the Slope to the Cup",
+                passage: `Pak Tigor grows Arabica coffee in Sipirok. Previously he sold cherries to collectors at Rp7,000/kg. Three years ago, 40 farmers formed a cooperative, bought processing machines, and sold directly to roasters in Jakarta at Rp12,000/kg. Members must maintain strict quality discipline and wait longer for payments, but earnings increased.`,
+                type: "MC",
+                prompt: "Which opinion about the cooperative is most strongly supported by the text?",
+                options: [
+                    "The cooperative is not useful because two of the farmers decided to leave it.",
+                    "The cooperative raises farmers’ income although it also demands more discipline and patient waiting.",
+                    "Farmers should return to collectors because selling to them is much faster and easier.",
+                    "The success comes only from the high altitude and the very good village soil.",
+                    "Coffee should be replaced by other crops needing less training and fewer written records."
+                ],
+                correctKey: 1, // B
+                explanation: "<b>Kunci Jawaban: B</b><br>Teks menyimpulkan bahwa koperasi meningkatkan pendapatan petani (dari Rp7.000 ke Rp12.000/kg) meskipun menuntut kedisiplinan dan kesabaran dalam siklus pembayaran."
+            },
+            {
+                id: 30,
+                title: "Seven Days Without a Screen",
+                passage: `Twenty grade 11 students tried a 7-day screen detox. After early anxiety, students finished homework faster, slept better, and read books. Most did not eliminate social media completely afterwards, but set personal limits (removing home screen apps, no phones in bedroom). Counsellor concluded detox helps students recognise habits.`,
+                type: "MC",
+                prompt: "Which opinion is most strongly supported by the result of the experiment described in the text?",
+                options: [
+                    "A short digital detox helps students recognise their habits and choose their own limits.",
+                    "Social media has no effect on the sleep or the concentration of young teenagers.",
+                    "Schools should ban phones completely because no student found any real benefit at all.",
+                    "All students should delete their social media accounts permanently because screens are very harmful.",
+                    "The experiment completely failed because two of the students left on the second day."
+                ],
+                correctKey: 0, // A
+                explanation: "<b>Kunci Jawaban: A</b><br>Kesimpulan guru BK di paragraf terakhir: Detoks digital singkat membantu siswa mengenali kebiasaan mereka sendiri dan menentukan batasan penggunaan secara mandiri."
+            }
+        ];
+
+        /* ==========================================================================
+           2. GLOBAL STATE VARIABLES
+           ========================================================================== */
+        let studentData = { name: "", classGroup: "" };
+        let currentQuestionIndex = 0;
+        let userAnswers = {}; // { qId: answerValue }
+        let flaggedQuestions = {}; // { qId: true/false }
+        let examTimer = null;
+        let secondsRemaining = 60 * 60; // 60 minutes = 3600s
+        let timeSpentSeconds = 0;
+        let currentFontSizeLevel = 0; // -1, 0, +1
+        let currentExplanationFilter = 'all';
+
+        /* ==========================================================================
+           3. APPLICATION INITIALIZATION & THEME
+           ========================================================================== */
+        window.onload = function() {
+            renderNavGrid();
+            loadTeacherDatabase();
+            
+            // Check system dark mode preference
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
+            }
+        };
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        function changeFontSize(delta) {
+            currentFontSizeLevel = Math.max(-1, Math.min(2, currentFontSizeLevel + delta));
+            const contentArea = document.getElementById('contentArea');
+            if (currentFontSizeLevel === -1) {
+                contentArea.className = "flex-1 p-5 sm:p-6 overflow-y-auto custom-scrollbar space-y-6 text-xs sm:text-sm";
+            } else if (currentFontSizeLevel === 0) {
+                contentArea.className = "flex-1 p-5 sm:p-6 overflow-y-auto custom-scrollbar space-y-6 text-sm sm:text-base";
+            } else {
+                contentArea.className = "flex-1 p-5 sm:p-6 overflow-y-auto custom-scrollbar space-y-6 text-base sm:text-lg";
+            }
+        }
+
+        /* ==========================================================================
+           4. EXAM CONTROL & TIMER LOGIC
+           ========================================================================== */
+        function startExam(e) {
+            e.preventDefault();
+            const nameInput = document.getElementById('studentName').value.trim();
+            const classSelect = document.getElementById('studentClass').value;
+
+            if (!nameInput || !classSelect) {
+                alert("Harap isi Nama Lengkap dan pilih Kelas terlebih dahulu.");
+                return;
+            }
+
+            studentData.name = nameInput;
+            studentData.classGroup = classSelect;
+
+            // Hide Login, Show Exam Screen & Timer Badge
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('examScreen').classList.remove('hidden');
+            document.getElementById('timerBadge').classList.remove('hidden');
+            document.getElementById('fontResizer').classList.remove('hidden');
+
+            // Initialize Timer
+            startTimer();
+
+            // Render first question
+            loadQuestion(0);
+        }
+
+        function startTimer() {
+            updateTimerDisplay();
+            examTimer = setInterval(() => {
+                secondsRemaining--;
+                timeSpentSeconds++;
+                updateTimerDisplay();
+
+                if (secondsRemaining <= 0) {
+                    clearInterval(examTimer);
+                    alert("Waktu pengerjaan (60 Menit) telah habis! Sistem akan mengumpulkan jawaban Anda otomatis.");
+                    processFinalSubmission();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(secondsRemaining / 60);
+            const secs = secondsRemaining % 60;
+            document.getElementById('timeDisplay').innerText = 
+                `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        /* ==========================================================================
+           5. QUESTION RENDER & NAVIGATION ENGINE
+           ========================================================================== */
+        function renderNavGrid() {
+            const gridContainer = document.getElementById('navigationGrid');
+            gridContainer.innerHTML = '';
+
+            examQuestions.forEach((q, idx) => {
+                const btn = document.createElement('button');
+                btn.id = `nav-btn-${idx}`;
+                btn.onclick = () => loadQuestion(idx);
+                btn.innerText = idx + 1;
+                btn.className = getNavButtonClass(idx);
+                gridContainer.appendChild(btn);
+            });
+
+            updateProgressSummary();
+        }
+
+        function getNavButtonClass(idx) {
+            const qId = examQuestions[idx].id;
+            const isAnswered = isQuestionAnswered(qId);
+            const isFlagged = flaggedQuestions[qId];
+            const isCurrent = (idx === currentQuestionIndex);
+
+            let base = "h-9 w-9 sm:h-10 sm:w-10 rounded-lg text-xs font-bold transition flex items-center justify-center border shadow-sm ";
+
+            if (isCurrent) {
+                base += "ring-2 ring-brand-500 ring-offset-1 dark:ring-offset-slate-800 ";
+            }
+
+            if (isFlagged) {
+                return base + "bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-200 border-amber-400 dark:border-amber-600";
+            }
+            if (isAnswered) {
+                return base + "bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-200 border-emerald-400 dark:border-emerald-600";
+            }
+            return base + "bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-600 hover:bg-slate-200";
+        }
+
+        function updateNavGridButtons() {
+            examQuestions.forEach((q, idx) => {
+                const btn = document.getElementById(`nav-btn-${idx}`);
+                if (btn) btn.className = getNavButtonClass(idx);
+            });
+            updateProgressSummary();
+        }
+
+        function updateProgressSummary() {
+            let count = 0;
+            examQuestions.forEach(q => {
+                if (isQuestionAnswered(q.id)) count++;
+            });
+            document.getElementById('progressSummary').innerText = `${count} / 30`;
+        }
+
+        function isQuestionAnswered(qId) {
+            const ans = userAnswers[qId];
+            if (ans === undefined || ans === null) return false;
+            if (Array.isArray(ans)) {
+                return ans.length > 0 && ans.some(val => val !== null && val !== undefined);
+            }
+            return true;
+        }
+
+        function loadQuestion(idx) {
+            currentQuestionIndex = idx;
+            const q = examQuestions[idx];
+
+            // Badges & Title
+            document.getElementById('questionNumBadge').innerText = `Soal #${idx + 1} dari 30`;
+            document.getElementById('readingTitle').innerText = q.title;
+            document.getElementById('readingBody').innerText = q.passage;
+            document.getElementById('questionPrompt').innerText = q.prompt;
+
+            // Type Badge Label
+            const typeLabel = q.type === 'MC' ? 'Multiple Choice (1 Jawaban)' :
+                              q.type === 'CMC' ? 'Complex MC (Pilih > 2 Jawaban)' : 'True / False (Benar - Salah)';
+            document.getElementById('questionTypeBadge').innerText = typeLabel;
+
+            // Flag checkbox state
+            document.getElementById('flagCheckbox').checked = !!flaggedQuestions[q.id];
+
+            // Render Options View based on type
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+
+            if (q.type === 'MC') {
+                renderMultipleChoiceOptions(q, container);
+            } else if (q.type === 'CMC') {
+                renderComplexMCOptions(q, container);
+            } else if (q.type === 'TF') {
+                renderTrueFalseOptions(q, container);
+            }
+
+            // Update Navigation Buttons state
+            document.getElementById('prevBtn').disabled = (idx === 0);
+            document.getElementById('nextBtn').disabled = (idx === examQuestions.length - 1);
+
+            updateNavGridButtons();
+
+            // Scroll content area back to top
+            document.getElementById('contentArea').scrollTop = 0;
+        }
+
+        /* --- Option Renderers --- */
+        function renderMultipleChoiceOptions(q, container) {
+            const currentAns = userAnswers[q.id]; // integer index
+            const labels = ['A', 'B', 'C', 'D', 'E'];
+
+            q.options.forEach((optText, optIdx) => {
+                const label = document.createElement('label');
+                const isSelected = (currentAns === optIdx);
+                label.className = `flex items-start p-3.5 rounded-xl border cursor-pointer transition ${
+                    isSelected ? 'bg-brand-50 dark:bg-slate-700 border-brand-500 dark:border-brand-400 font-medium' : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/50'
+                }`;
+
+                label.innerHTML = `
+                    <input type="radio" name="option_q_${q.id}" value="${optIdx}" ${isSelected ? 'checked' : ''} onchange="saveMCAnswer(${q.id}, ${optIdx})" class="mt-0.5 text-brand-600 focus:ring-brand-500 h-4 w-4">
+                    <span class="ml-3 text-slate-800 dark:text-slate-200 leading-snug">
+                        <strong class="text-brand-600 dark:text-brand-400 mr-1">${labels[optIdx]}.</strong> ${optText}
+                    </span>
+                `;
+                container.appendChild(label);
+            });
+        }
+
+        function saveMCAnswer(qId, val) {
+            userAnswers[qId] = val;
+            updateNavGridButtons();
+            loadQuestion(currentQuestionIndex); // re-render selected styling
+        }
+
+        function renderComplexMCOptions(q, container) {
+            const currentAnsArr = userAnswers[q.id] || []; // array of selected indices
+            const labels = ['A', 'B', 'C', 'D', 'E'];
+
+            q.options.forEach((optText, optIdx) => {
+                const isChecked = currentAnsArr.includes(optIdx);
+                const label = document.createElement('label');
+                label.className = `flex items-start p-3.5 rounded-xl border cursor-pointer transition ${
+                    isChecked ? 'bg-brand-50 dark:bg-slate-700 border-brand-500 dark:border-brand-400 font-medium' : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/50'
+                }`;
+
+                label.innerHTML = `
+                    <input type="checkbox" value="${optIdx}" ${isChecked ? 'checked' : ''} onchange="saveCMCAnswer(${q.id}, ${optIdx}, this.checked)" class="mt-0.5 rounded text-brand-600 focus:ring-brand-500 h-4 w-4">
+                    <span class="ml-3 text-slate-800 dark:text-slate-200 leading-snug">
+                        <strong class="text-brand-600 dark:text-brand-400 mr-1">${labels[optIdx]}.</strong> ${optText}
+                    </span>
+                `;
+                container.appendChild(label);
+            });
+        }
+
+        function saveCMCAnswer(qId, optIdx, isChecked) {
+            let current = userAnswers[qId] || [];
+            if (isChecked) {
+                if (!current.includes(optIdx)) current.push(optIdx);
+            } else {
+                current = current.filter(i => i !== optIdx);
+            }
+            userAnswers[qId] = current;
+            updateNavGridButtons();
+            loadQuestion(currentQuestionIndex);
+        }
+
+        function renderTrueFalseOptions(q, container) {
+            // currentAns: array of booleans [stmt0, stmt1, stmt2]
+            const currentAnsArr = userAnswers[q.id] || [null, null, null];
+
+            const table = document.createElement('div');
+            table.className = "overflow-x-auto border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800";
+            
+            let html = `
+                <table class="w-full text-left text-xs sm:text-sm">
+                    <thead class="bg-slate-100 dark:bg-slate-700/60 font-bold text-slate-800 dark:text-slate-200 border-b border-slate-200 dark:border-slate-700">
+                        <tr>
+                            <th class="p-3 w-12 text-center">No</th>
+                            <th class="p-3">Statement</th>
+                            <th class="p-3 w-20 text-center">True</th>
+                            <th class="p-3 w-20 text-center">False</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+            `;
+
+            q.statements.forEach((stmt, sIdx) => {
+                const val = currentAnsArr[sIdx]; // true, false, or null
+                html += `
+                    <tr>
+                        <td class="p-3 text-center font-bold text-slate-500">${sIdx + 1}</td>
+                        <td class="p-3 text-slate-800 dark:text-slate-200 leading-relaxed">${stmt}</td>
+                        <td class="p-3 text-center">
+                            <input type="radio" name="tf_${q.id}_${sIdx}" ${val === true ? 'checked' : ''} onchange="saveTFAnswer(${q.id}, ${sIdx}, true)" class="text-emerald-600 focus:ring-emerald-500 h-4 w-4">
+                        </td>
+                        <td class="p-3 text-center">
+                            <input type="radio" name="tf_${q.id}_${sIdx}" ${val === false ? 'checked' : ''} onchange="saveTFAnswer(${q.id}, ${sIdx}, false)" class="text-rose-600 focus:ring-rose-500 h-4 w-4">
+                        </td>
+                    </tr>
+                `;
+            });
+
+            html += `</tbody></table>`;
+            table.innerHTML = html;
+            container.appendChild(table);
+        }
+
+        function saveTFAnswer(qId, stmtIdx, isTrue) {
+            let current = userAnswers[qId] || [null, null, null];
+            current[stmtIdx] = isTrue;
+            userAnswers[qId] = current;
+            updateNavGridButtons();
+        }
+
+        function toggleFlagCurrentQuestion() {
+            const qId = examQuestions[currentQuestionIndex].id;
+            flaggedQuestions[qId] = !flaggedQuestions[qId];
+            updateNavGridButtons();
+        }
+
+        function navigateQuestion(direction) {
+            const target = currentQuestionIndex + direction;
+            if (target >= 0 && target < examQuestions.length) {
+                loadQuestion(target);
+            }
+        }
+
+        /* ==========================================================================
+           6. EXAM SUBMISSION & SCORING SYSTEM
+           ========================================================================== */
+        function confirmSubmitExam() {
+            let unanswered = 0;
+            examQuestions.forEach(q => {
+                if (!isQuestionAnswered(q.id)) unanswered++;
+            });
+
+            const textEl = document.getElementById('confirmModalText');
+            if (unanswered > 0) {
+                textEl.innerHTML = `Masih ada <strong class="text-rose-600">${unanswered} soal</strong> yang belum dijawab atau belum lengkap. Yakin ingin mengumpulkan sekarang?`;
+            } else {
+                textEl.innerHTML = `Selamat! Anda telah menjawab seluruh 30 soal. Apakah Anda yakin ingin mengumpulkan jawaban sekarang?`;
+            }
+
+            document.getElementById('confirmModal').classList.remove('hidden');
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').classList.add('hidden');
+        }
+
+        function processFinalSubmission() {
+            closeConfirmModal();
+            clearInterval(examTimer);
+
+            // Calculate Score
+            let correctCount = 0;
+            let wrongCount = 0;
+
+            examQuestions.forEach(q => {
+                const userAns = userAnswers[q.id];
+                let isCorrect = false;
+
+                if (q.type === 'MC') {
+                    isCorrect = (userAns === q.correctKey);
+                } else if (q.type === 'CMC') {
+                    if (Array.isArray(userAns)) {
+                        const sortedUser = [...userAns].sort();
+                        const sortedKey = [...q.correctKey].sort();
+                        isCorrect = JSON.stringify(sortedUser) === JSON.stringify(sortedKey);
+                    }
+                } else if (q.type === 'TF') {
+                    if (Array.isArray(userAns)) {
+                        isCorrect = JSON.stringify(userAns) === JSON.stringify(q.correctKey);
+                    }
+                }
+
+                if (isCorrect) correctCount++;
+                else wrongCount++;
+            });
+
+            const finalScore = Math.round((correctCount / examQuestions.length) * 100);
+
+            // Save Attempt to Database
+            saveAttemptRecord({
+                name: studentData.name,
+                classGroup: studentData.classGroup,
+                score: finalScore,
+                correct: correctCount,
+                wrong: wrongCount,
+                timeSpent: formatTime(timeSpentSeconds),
+                timestamp: new Date().toLocaleString('id-ID')
+            });
+
+            // Display Results Screen
+            showResultsScreen(finalScore, correctCount, wrongCount);
+        }
+
+        function formatTime(totalSeconds) {
+            const m = Math.floor(totalSeconds / 60);
+            const s = totalSeconds % 60;
+            return `${m}m ${s}s`;
+        }
+
+        /* ==========================================================================
+           7. RESULTS & DEEP EXPLANATION REVIEW SCREEN
+           ========================================================================== */
+        function showResultsScreen(score, correct, wrong) {
+            document.getElementById('examScreen').classList.add('hidden');
+            document.getElementById('timerBadge').classList.add('hidden');
+            document.getElementById('fontResizer').classList.add('hidden');
+            document.getElementById('resultScreen').classList.remove('hidden');
+
+            document.getElementById('resStudentName').innerText = studentData.name;
+            document.getElementById('resStudentClass').innerText = `Kelas: ${studentData.classGroup} | Selesai pada: ${new Date().toLocaleTimeString('id-ID')}`;
+            document.getElementById('resScore').innerText = score;
+            document.getElementById('resCorrect').innerText = correct;
+            document.getElementById('resWrong').innerText = wrong;
+            document.getElementById('resTimeUsed').innerText = formatTime(timeSpentSeconds);
+
+            renderExplanationsList();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function filterExplanation(type) {
+            currentExplanationFilter = type;
+            
+            // Toggle active filter button styles
+            document.getElementById('filterAllBtn').className = type === 'all' ? 'px-3 py-1.5 rounded-md bg-white dark:bg-slate-600 text-slate-800 dark:text-white shadow-sm' : 'px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-300 hover:text-slate-900';
+            document.getElementById('filterCorrectBtn').className = type === 'correct' ? 'px-3 py-1.5 rounded-md bg-white dark:bg-slate-600 text-slate-800 dark:text-white shadow-sm' : 'px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-300 hover:text-slate-900';
+            document.getElementById('filterWrongBtn').className = type === 'wrong' ? 'px-3 py-1.5 rounded-md bg-white dark:bg-slate-600 text-slate-800 dark:text-white shadow-sm' : 'px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-300 hover:text-slate-900';
+
+            renderExplanationsList();
+        }
+
+        function renderExplanationsList() {
+            const listContainer = document.getElementById('explanationsList');
+            listContainer.innerHTML = '';
+
+            examQuestions.forEach((q, idx) => {
+                const userAns = userAnswers[q.id];
+                let isCorrect = false;
+
+                if (q.type === 'MC') isCorrect = (userAns === q.correctKey);
+                else if (q.type === 'CMC') isCorrect = Array.isArray(userAns) && JSON.stringify([...userAns].sort()) === JSON.stringify([...q.correctKey].sort());
+                else if (q.type === 'TF') isCorrect = Array.isArray(userAns) && JSON.stringify(userAns) === JSON.stringify(q.correctKey);
+
+                if (currentExplanationFilter === 'correct' && !isCorrect) return;
+                if (currentExplanationFilter === 'wrong' && isCorrect) return;
+
+                const card = document.createElement('div');
+                card.className = `bg-white dark:bg-slate-800 rounded-2xl p-5 sm:p-6 shadow-md border ${
+                    isCorrect ? 'border-emerald-200 dark:border-emerald-900' : 'border-rose-200 dark:border-rose-900'
+                } space-y-4`;
+
+                // Header status badge
+                const statusBadge = isCorrect ?
+                    `<span class="bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 text-xs font-bold px-3 py-1 rounded-full"><i class="fa-solid fa-check mr-1"></i> Benar</span>` :
+                    `<span class="bg-rose-100 dark:bg-rose-900/50 text-rose-800 dark:text-rose-300 text-xs font-bold px-3 py-1 rounded-full"><i class="fa-solid fa-xmark mr-1"></i> Salah</span>`;
+
+                card.innerHTML = `
+                    <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-700 pb-3">
+                        <span class="font-bold text-slate-800 dark:text-slate-200 text-sm">Soal Nomor ${idx + 1}</span>
+                        ${statusBadge}
+                    </div>
+
+                    <div class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300">
+                        ${q.prompt}
+                    </div>
+
+                    <!-- User Answer vs Correct Key Summary -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs bg-slate-50 dark:bg-slate-700/40 p-3 rounded-xl">
+                        <div>
+                            <span class="text-slate-500 dark:text-slate-400 font-bold block mb-1">Jawaban Anda:</span>
+                            <span class="${isCorrect ? 'text-emerald-600 font-semibold' : 'text-rose-600 font-semibold'}">
+                                ${formatUserAnswerDisplay(q, userAns)}
+                            </span>
+                        </div>
+                        <div>
+                            <span class="text-slate-500 dark:text-slate-400 font-bold block mb-1">Kunci Jawaban Resmi:</span>
+                            <span class="text-brand-600 dark:text-brand-400 font-semibold">
+                                ${formatCorrectKeyDisplay(q)}
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Deep Indonesian Educational Explanation -->
+                    <div class="p-4 rounded-xl bg-amber-50/70 dark:bg-slate-900/80 border border-amber-200/80 dark:border-slate-700 text-xs sm:text-sm leading-relaxed text-slate-800 dark:text-slate-200 space-y-2">
+                        <div class="font-bold text-amber-900 dark:text-amber-400 flex items-center">
+                            <i class="fa-solid fa-lightbulb mr-2 text-amber-500"></i> Pembahasan Mendalam:
+                        </div>
+                        <div>${q.explanation}</div>
+                    </div>
+                `;
+
+                listContainer.appendChild(card);
+            });
+        }
+
+        function formatUserAnswerDisplay(q, userAns) {
+            if (userAns === undefined || userAns === null) return "<i>Tidak Dijawab</i>";
+            const labels = ['A', 'B', 'C', 'D', 'E'];
+
+            if (q.type === 'MC') {
+                return `${labels[userAns]}. ${q.options[userAns]}`;
+            } else if (q.type === 'CMC') {
+                if (!Array.isArray(userAns) || userAns.length === 0) return "<i>Tidak Dijawab</i>";
+                return userAns.map(i => `${labels[i]}`).join(', ');
+            } else if (q.type === 'TF') {
+                if (!Array.isArray(userAns)) return "<i>Tidak Dijawab</i>";
+                return userAns.map((v, i) => `Stmt ${i+1}: ${v === true ? 'True' : v === false ? 'False' : '-'}`).join(' | ');
+            }
+        }
+
+        function formatCorrectKeyDisplay(q) {
+            const labels = ['A', 'B', 'C', 'D', 'E'];
+            if (q.type === 'MC') {
+                return `${labels[q.correctKey]}. ${q.options[q.correctKey]}`;
+            } else if (q.type === 'CMC') {
+                return q.correctKey.map(i => `${labels[i]}`).join(', ');
+            } else if (q.type === 'TF') {
+                return q.correctKey.map((v, i) => `Stmt ${i+1}: ${v ? 'True' : 'False'}`).join(' | ');
+            }
+        }
+
+        /* ==========================================================================
+           8. LOCALDATABASE & TEACHER DASHBOARD
+           ========================================================================== */
+        const DB_KEY = 'ATS_BAHASA_INGGRIS_XI_RECORDS';
+
+        function getStoredRecords() {
+            try {
+                return JSON.parse(localStorage.getItem(DB_KEY)) || [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveAttemptRecord(record) {
+            const records = getStoredRecords();
+            records.unshift(record);
+            localStorage.setItem(DB_KEY, JSON.stringify(records));
+        }
+
+        function openTeacherDashboard() {
+            document.getElementById('teacherModal').classList.remove('hidden');
+            renderTeacherTable();
+        }
+
+        function closeTeacherDashboard() {
+            document.getElementById('teacherModal').classList.add('hidden');
+        }
+
+        function renderTeacherTable() {
+            const records = getStoredRecords();
+            const filterClass = document.getElementById('filterClassTeacher').value;
+            const tbody = document.getElementById('teacherTableBody');
+            tbody.innerHTML = '';
+
+            const filtered = filterClass === 'ALL' ? records : records.filter(r => r.classGroup === filterClass);
+            document.getElementById('totalAttemptBadge').innerText = `${filtered.length} Data TerSimpan`;
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-slate-400">Belum ada data pengerjaan siswa.</td></tr>`;
+                return;
+            }
+
+            filtered.forEach((r, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 dark:hover:bg-slate-700/50";
+                tr.innerHTML = `
+                    <td class="p-3 font-bold text-slate-400">${idx + 1}</td>
+                    <td class="p-3 font-bold text-slate-900 dark:text-white">${r.name}</td>
+                    <td class="p-3 font-semibold text-brand-600">${r.classGroup}</td>
+                    <td class="p-3 font-extrabold text-slate-800 dark:text-slate-100">${r.score}</td>
+                    <td class="p-3"><span class="text-emerald-600 font-bold">${r.correct}</span> / <span class="text-rose-600 font-bold">${r.wrong}</span></td>
+                    <td class="p-3">${r.timeSpent}</td>
+                    <td class="p-3 text-slate-500">${r.timestamp}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function exportToCSV() {
+            const records = getStoredRecords();
+            if (records.length === 0) {
+                alert("Tidak ada data untuk diekspor.");
+                return;
+            }
+
+            let csvContent = "data:text/csv;charset=utf-8,No,Nama Siswa,Kelas,Skor,Benar,Salah,Durasi,Waktu Selesai\n";
+            records.forEach((r, idx) => {
+                csvContent += `${idx + 1},"${r.name}",${r.classGroup},${r.score},${r.correct},${r.wrong},"${r.timeSpent}","${r.timestamp}"\n`;
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `Rekap_Nilai_ATS_Bahasa_Inggris_XI_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function clearDatabase() {
+            if (confirm("Apakah Anda yakin ingin menghapus seluruh riwayat data pengerjaan siswa? Tindakan ini tidak dapat dibatalkan.")) {
+                localStorage.removeItem(DB_KEY);
+                renderTeacherTable();
+            }
+        }
+    </script>
+</body>
+</html>
